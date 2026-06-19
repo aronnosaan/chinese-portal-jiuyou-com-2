@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aronnosaan.github.io/chinese-portal-jiuyou-com-2/sitemap.xml

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游 · 一处安静的入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5faf8;
+            color: #1e2f2b;
+            line-height: 1.7;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* 开场短句 — 像轻轻推开门 */
+        .opening {
+            margin-top: 3rem;
+            margin-bottom: 2.2rem;
+            font-size: 1.8rem;
+            font-weight: 350;
+            letter-spacing: 0.02em;
+            color: #1d4b41;
+            border-left: 5px solid #3ea28f;
+            padding-left: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .opening span {
+            display: inline-block;
+            background: #e2f0ec;
+            padding: 0.1rem 0.5rem;
+            border-radius: 6px;
+            color: #0d3c32;
+        }
+
+        /* 承接段落 */
+        .bridge {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            padding: 2rem 2.2rem;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(22, 70, 60, 0.06);
+            margin-bottom: 2.8rem;
+            border: 1px solid #d3e6e0;
+        }
+
+        .bridge p {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .bridge p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bridge a {
+            color: #1c7a66;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid #a8cec2;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .bridge a:hover {
+            color: #0b4e40;
+            border-bottom-color: #258d76;
+        }
+
+        /* 网格卡片 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 40, 33, 0.04);
+            border: 1px solid #d7ebe4;
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(26, 80, 68, 0.08);
+        }
+
+        .card .icon {
+            background: #def1ea;
+            width: 44px;
+            height: 44px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: #146454;
+        }
+
+        .card h3 {
+            font-weight: 500;
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+            color: #1a4e41;
+        }
+
+        .card p {
+            color: #2c4a41;
+            font-size: 0.95rem;
+        }
+
+        /* 温和的场景描述 + FAQ 摘要 */
+        .scene-faq {
+            background: #e9f3ef;
+            padding: 2.2rem 2rem;
+            border-radius: 28px;
+            margin-bottom: 2.8rem;
+            border: 1px solid #c6dbd3;
+        }
+
+        .scene-faq h2 {
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: #124137;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.01em;
+        }
+
+        .scene-faq details {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #b6d0c7;
+            padding-bottom: 0.8rem;
+        }
+
+        .scene-faq details:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .scene-faq summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #1b5b4b;
+            font-size: 1.05rem;
+            padding: 0.2rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scene-faq summary::before {
+            content: "▹";
+            color: #28907a;
+            font-size: 1.1rem;
+        }
+
+        .scene-faq details[open] summary::before {
+            content: "▿";
+        }
+
+        .scene-faq .answer {
+            margin-top: 0.6rem;
+            padding-left: 1.4rem;
+            color: #1d3e36;
+            font-size: 0.95rem;
+        }
+
+        /* 温和结尾 */
+        .gentle-end {
+            background: #ffffff;
+            padding: 2rem 2.2rem;
+            border-radius: 28px;
+            text-align: center;
+            border: 1px solid #d5e6df;
+            box-shadow: 0 2px 12px rgba(0, 30, 24, 0.03);
+            margin-bottom: 3rem;
+        }
+
+        .gentle-end p {
+            font-size: 1.1rem;
+            color: #1b463c;
+            max-width: 600px;
+            margin: 0 auto 0.8rem auto;
+        }
+
+        .gentle-end .small-note {
+            font-size: 0.9rem;
+            color: #50766b;
+            border-top: 1px solid #deece6;
+            padding-top: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .gentle-end a {
+            color: #1b7a64;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid #b0d3c8;
+            transition: border-color 0.2s;
+        }
+
+        .gentle-end a:hover {
+            border-bottom-color: #25826b;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            .opening {
+                font-size: 1.4rem;
+                padding-left: 1.2rem;
+                margin-top: 1.8rem;
+            }
+
+            .bridge {
+                padding: 1.5rem 1.2rem;
+                border-radius: 22px;
+            }
+
+            .bridge p {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .scene-faq {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .gentle-end {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+
+        /* 一点装饰性分隔 */
+        .thin-line {
+            width: 60px;
+            height: 3px;
+            background: #9ecfc0;
+            border-radius: 8px;
+            margin: 0.6rem 0 1.2rem 0;
+        }
+
+        .inline-code {
+            background: #e3f0eb;
+            padding: 0 6px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #135a48;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 开场短句 -->
+    <div class="opening">
+        有时只需要一个<span>稳定</span>的入口，其余一切都安静下来。
+    </div>
+
+    <!-- 承接段落：从页面说明角度展开，将九游自然嵌入 -->
+    <div class="bridge">
+        <p>
+            每天打开浏览器，我们面对太多标签、跳转和选择。但有一个地方，自从第一次遇见就很少再改动——那就是
+            <a href="https://chinese-portal-jiuyou.com">九游</a>。
+            说不上哪里特别，可能就是加载很快，布局干净，也没有铺天盖地的推送。
+            对于习惯了“先找到它，再开始其他事情”的人来说，这种稳定反而成了日常里一种不声张的陪伴。
+        </p>
+        <p>
+            这个页面不是为了介绍功能清单，更像是描述一种使用时的感受：当你需要某个入口、某个页面、某个工具，它已经在那边了，
+            不闪烁，不催促，只是静静等着。所有内容都围绕这种“不打扰的可靠”来组织。
+        </p>
+    </div>
+
+    <!-- 特点列表：网格卡片，蓝绿点缀 -->
+    <div class="features-grid">
+        <div class="card">
+            <div class="icon">↻</div>
+            <h3>不重样的节奏</h3>
+            <p>每一次访问，内容结构和视觉细节都有细微变化。页面像有自己的呼吸，不会让你产生千篇一律的疲劳感。</p>
+        </div>
+        <div class="card">
+            <div class="icon">◈</div>
+            <h3>克制的引导</h3>
+            <p>所有链接都自然地出现在句子里，语气更像朋友提醒，而非广告按钮。没有花哨的弹窗，也没有刻意的催促。</p>
+        </div>
+        <div class="card">
+            <div class="icon">⊞</div>
+            <h3>卡片与网格</h3>
+            <p>信息被分割成舒服的区块，蓝绿色调温和不刺眼。无论在手机还是宽屏上，卡片都保持透气感。</p>
+        </div>
+        <div class="card">
+            <div class="icon">☷</div>
+            <h3>日常的落脚点</h3>
+            <p>它不承诺改变你的生活，但如果你需要一个不制造焦虑的数字角落，这里刚好合适。</p>
+        </div>
+    </div>
+
+    <!-- 场景提示 + FAQ 摘要（混合章节） -->
+    <div class="scene-faq">
+        <h2>一些常见的小疑问</h2>
+
+        <details>
+            <summary>这个页面会频繁变化吗？</summary>
+            <div class="answer">
+                每次生成都会调整段落结构、卡片措辞和视觉细节，但核心链接和稳定入口始终不变。
+                如果你隔段时间再来看，可能会发现新的叙述角度。
+            </div>
+        </details>
+
+        <details>
+            <summary>我可以把 <span class="inline-code">九游</span> 设为主页吗？</summary>
+            <div class="answer">
+                当然可以。它加载轻量，且不会擅自修改你的设置。作为起始页，它只是安静地等待你输入或点击。
+            </div>
+        </details>
+
+        <details>
+            <summary>移动端体验怎么样？</summary>
+            <div class="answer">
+                所有卡片、间距和字体都针对小屏幕做过适配。单手操作时，链接和触摸区域都足够宽容。
+                蓝绿色背景在户外阅读也很舒适。
+            </div>
+        </details>
+
+        <details>
+            <summary>为什么叫九游？</summary>
+            <div class="answer">
+                名字来源于一种长期使用的习惯——九为数之极，游是行进的状态。组合在一起，像是说“一个可以反复回来、不会走散的地方”。不过说到底，名字只是个代号，好用才重要。
+            </div>
+        </details>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="gentle-end">
+        <p>
+            如果你已经读到了这里，也许正好需要一个不慌不忙的起点。
+            不妨把 <a href="https://chinese-portal-jiuyou.com">九游</a> 放在书签里，
+            下次打开浏览器时，它会是那个让你觉得“嗯，熟悉又舒服”的页面。
+        </p>
+        <div class="thin-line" style="margin: 1.2rem auto 0.6rem auto;"></div>
+        <div class="small-note">
+            不收集数据，不推送消息，只是做好一个入口该做的事。
+        </div>
+    </div>
+
+    <!-- 尾注：彻底不包含任何多余链接，只保留上面两个九游链接 -->
+</div>
+</body>
+</html>
